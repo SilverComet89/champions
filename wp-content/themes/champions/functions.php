@@ -53,15 +53,6 @@ if ( ! function_exists( 'champions_setup' ) ) :
 		add_theme_support( 'post-thumbnails' );
 		set_post_thumbnail_size( 1568, 9999 );
 
-		// This theme uses wp_nav_menu() in two locations.
-		register_nav_menus(
-			array(
-				'menu-1' => __( 'Primary', 'champions' ),
-				'footer' => __( 'Footer Menu', 'champions' ),
-				'social' => __( 'Social Links Menu', 'champions' ),
-			)
-		);
-
 		/*
 		 * Switch default core markup for search form, comment form, and comments
 		 * to output valid HTML5.
@@ -79,20 +70,11 @@ if ( ! function_exists( 'champions_setup' ) ) :
 			)
 		);
 
-		/**
-		 * Add support for core custom logo.
-		 *
-		 * @link https://codex.wordpress.org/Theme_Logo
-		 */
-		add_theme_support(
-			'custom-logo',
-			array(
-				'height'      => 190,
-				'width'       => 190,
-				'flex-width'  => false,
-				'flex-height' => false,
-			)
-		);
+		
+
+		
+		
+		
 
 		// Add theme support for selective refresh for widgets.
 		add_theme_support( 'customize-selective-refresh-widgets' );
@@ -223,11 +205,6 @@ function champions_scripts() {
 
 	wp_style_add_data( 'champions-style', 'rtl', 'replace' );
 
-	if ( has_nav_menu( 'menu-1' ) ) {
-		wp_enqueue_script( 'champions-priority-menu', get_theme_file_uri( '/js/priority-menu.js' ), array(), '20181214', true );
-		wp_enqueue_script( 'champions-touch-navigation', get_theme_file_uri( '/js/touch-keyboard-navigation.js' ), array(), '20181231', true );
-	}
-
 	wp_enqueue_style( 'champions-print-style', get_template_directory_uri() . '/print.css', array(), wp_get_theme()->get( 'Version' ), 'print' );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -333,7 +310,6 @@ require get_template_directory() . '/inc/customizer.php';
 /* Champions changes */
 /*********************/
 
-
 // Replacing defaults with theme defaults, allowing for customisation whilst also allowing for less initial setup.
 
 /**
@@ -346,4 +322,81 @@ function champions_option_description($value) {
 }
 
 add_filter('option_blogdescription', 'champions_option_description', 10, 1);
+
+// Creating our menus
+function champions_setup_theme() {
+	register_nav_menus(
+	  array(
+		'header-menu' => __( 'Header Menu Location' ),
+		'footer-menu' => __( 'Footer Menu Location' )
+	   )
+	);
+
+	// Create our menu
+	if(!wp_get_nav_menu_object('Header Menu')) {
+		wp_create_nav_menu('Header Menu');
+	}
+	if(!wp_get_nav_menu_object('Footer Menu')) {
+		wp_create_nav_menu('Footer Menu');
+	}
+	$menu_header = wp_get_nav_menu_object('Header Menu');
+	$menu_footer = wp_get_nav_menu_object('Footer Menu');
+
+	// Set menu locations
+	$locations = get_nav_menu_locations();
+	$locations['header-menu'] = $menu_header->term_id;
+	$locations['footer-menu'] = $menu_footer->term_id;
+	set_theme_mod('nav_menu_locations', $locations);
+
+
+	$pageItem = wp_get_nav_menu_items($menu_header->term_id, ["object"=>"page"] );
+	if(!$pageItem){
+		// Now add default values to our menus.
+		$pageItem = array(
+			"menu-item-title" => __('About us'),
+			"menu-item-classes" => 'about us',
+			"menu-item-url" => get_permalink(home_url()),
+			"menu-item-status" => "publish",
+		);
+
+		wp_update_nav_menu_item($menu_header->term_id, 0, $pageItem);
+		wp_update_nav_menu_item($menu_footer->term_id, 0, $pageItem);
+
+		// Now all other items are the same format, but with title changed as dummy links.
+		$pageItem["menu-item-title"] = __('Products');
+		$pageItem["menu-item-classes"] = 'products';
+		wp_update_nav_menu_item($menu_header->term_id, 0, $pageItem);
+		wp_update_nav_menu_item($menu_footer->term_id, 0, $pageItem);
+		$pageItem["menu-item-title"] = __('Careers');
+		$pageItem["menu-item-classes"] = 'careers';
+		wp_update_nav_menu_item($menu_header->term_id, 0, $pageItem);
+		wp_update_nav_menu_item($menu_footer->term_id, 0, $pageItem);
+		$pageItem["menu-item-title"] = __('Social');
+		$pageItem["menu-item-classes"] = 'social';
+		wp_update_nav_menu_item($menu_footer->term_id, 0, $pageItem);
+		$pageItem["menu-item-title"] = __('Contact');
+		$pageItem["menu-item-classes"] = 'contact';
+		wp_update_nav_menu_item($menu_header->term_id, 0, $pageItem);
+		wp_update_nav_menu_item($menu_footer->term_id, 0, $pageItem);
+	}
+
+	/**
+	 * Add support for core custom logo.
+	 *
+	 * @link https://codex.wordpress.org/Theme_Logo
+	 */
+	add_theme_support(
+		'custom-logo',
+		array(
+			'height'      => 162,
+			'width'       => 40,
+			'flex-width'  => true,
+			'flex-height' => true,
+		)
+	);
+}
+
+add_action( 'after_setup_theme', 'champions_custom_setup' );
+
+
 
