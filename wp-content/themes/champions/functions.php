@@ -328,3 +328,22 @@ require get_template_directory() . '/inc/template-tags.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+/*********************/
+/* Champions changes */
+/*********************/
+
+
+// Replacing defaults with theme defaults, allowing for customisation whilst also allowing for less initial setup.
+
+/**
+ * custom_option_description function
+ * @param [string] $value
+ * @return string
+ */
+function champions_option_description($value) {
+	return ($value == 'Just another WordPress site') ? '' : $value;
+}
+
+add_filter('option_blogdescription', 'champions_option_description', 10, 1);
+

@@ -9,9 +9,13 @@
 ?>
 <div class="site-branding">
 
+	<div class="site-logo">
 	<?php if ( has_custom_logo() ) : ?>
-		<div class="site-logo"><?php the_custom_logo(); ?></div>
+		<?php the_custom_logo(); ?>
+	<?php else : ?>
+		<a href="http://localhost/champions/" class="custom-logo-link" rel="home" aria-current="page"><img src="<?php echo get_template_directory_uri() ?>/images/Webathon_logo.png" class="custom-logo" alt="Webathon"></a></div>
 	<?php endif; ?>
+	</div>
 	<?php $blog_info = get_bloginfo( 'name' ); ?>
 	<?php if ( ! empty( $blog_info ) ) : ?>
 		<?php if ( is_front_page() && is_home() ) : ?>
