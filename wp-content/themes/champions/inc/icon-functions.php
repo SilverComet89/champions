@@ -10,22 +10,22 @@
 /**
  * Gets the SVG code for a given icon.
  */
-function twentynineteen_get_icon_svg( $icon, $size = 24 ) {
-	return TwentyNineteen_SVG_Icons::get_svg( 'ui', $icon, $size );
+function champions_get_icon_svg( $icon, $size = 24 ) {
+	return champions_SVG_Icons::get_svg( 'ui', $icon, $size );
 }
 
 /**
  * Gets the SVG code for a given social icon.
  */
-function twentynineteen_get_social_icon_svg( $icon, $size = 24 ) {
-	return TwentyNineteen_SVG_Icons::get_svg( 'social', $icon, $size );
+function champions_get_social_icon_svg( $icon, $size = 24 ) {
+	return champions_SVG_Icons::get_svg( 'social', $icon, $size );
 }
 
 /**
  * Detects the social network from a URL and returns the SVG code for its icon.
  */
-function twentynineteen_get_social_link_svg( $uri, $size = 24 ) {
-	return TwentyNineteen_SVG_Icons::get_social_link_svg( $uri, $size );
+function champions_get_social_link_svg( $uri, $size = 24 ) {
+	return champions_SVG_Icons::get_social_link_svg( $uri, $size );
 }
 
 /**
@@ -37,19 +37,19 @@ function twentynineteen_get_social_link_svg( $uri, $size = 24 ) {
  * @param stdClass $args        An object of wp_nav_menu() arguments.
  * @return string The menu item output with social icon.
  */
-function twentynineteen_nav_menu_social_icons( $item_output, $item, $depth, $args ) {
+function champions_nav_menu_social_icons( $item_output, $item, $depth, $args ) {
 	// Change SVG icon inside social links menu if there is supported URL.
 	if ( 'social' === $args->theme_location ) {
-		$svg = twentynineteen_get_social_link_svg( $item->url, 26 );
+		$svg = champions_get_social_link_svg( $item->url, 26 );
 		if ( empty( $svg ) ) {
-			$svg = twentynineteen_get_icon_svg( 'link' );
+			$svg = champions_get_icon_svg( 'link' );
 		}
 		$item_output = str_replace( $args->link_after, '</span>' . $svg, $item_output );
 	}
 
 	return $item_output;
 }
-add_filter( 'walker_nav_menu_start_el', 'twentynineteen_nav_menu_social_icons', 10, 4 );
+add_filter( 'walker_nav_menu_start_el', 'champions_nav_menu_social_icons', 10, 4 );
 
 /**
  * Add a dropdown icon to top-level menu items.
@@ -60,7 +60,7 @@ add_filter( 'walker_nav_menu_start_el', 'twentynineteen_nav_menu_social_icons', 
  * @param stdClass $args        An object of wp_nav_menu() arguments.
  * @return string Nav menu item start element.
  */
-function twentynineteen_add_dropdown_icons( $item_output, $item, $depth, $args ) {
+function champions_add_dropdown_icons( $item_output, $item, $depth, $args ) {
 
 	// Only add class to 'top level' items on the 'primary' menu.
 	if ( ! isset( $args->theme_location ) || 'menu-1' !== $args->theme_location ) {
@@ -72,7 +72,7 @@ function twentynineteen_add_dropdown_icons( $item_output, $item, $depth, $args )
 		// @todo Only do this for nested submenus? If on a first-level submenu, then really the link could be "#" since the desire is to remove the target entirely.
 		$link = sprintf(
 			'<button class="menu-item-link-return" tabindex="-1">%s',
-			twentynineteen_get_icon_svg( 'chevron_left', 24 )
+			champions_get_icon_svg( 'chevron_left', 24 )
 		);
 
 		// Replace opening <a> with <button>.
@@ -94,7 +94,7 @@ function twentynineteen_add_dropdown_icons( $item_output, $item, $depth, $args )
 	} elseif ( in_array( 'menu-item-has-children', $item->classes, true ) ) {
 
 		// Add SVG icon to parent items.
-		$icon = twentynineteen_get_icon_svg( 'keyboard_arrow_down', 24 );
+		$icon = champions_get_icon_svg( 'keyboard_arrow_down', 24 );
 
 		$item_output .= sprintf(
 			'<button class="submenu-expand" tabindex="-1">%s</button>',
@@ -104,4 +104,4 @@ function twentynineteen_add_dropdown_icons( $item_output, $item, $depth, $args )
 
 	return $item_output;
 }
-add_filter( 'walker_nav_menu_start_el', 'twentynineteen_add_dropdown_icons', 10, 4 );
+add_filter( 'walker_nav_menu_start_el', 'champions_add_dropdown_icons', 10, 4 );

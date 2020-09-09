@@ -10,21 +10,21 @@
 /**
  * Determines if post thumbnail can be displayed.
  */
-function twentynineteen_can_show_post_thumbnail() {
-	return apply_filters( 'twentynineteen_can_show_post_thumbnail', ! post_password_required() && ! is_attachment() && has_post_thumbnail() );
+function champions_can_show_post_thumbnail() {
+	return apply_filters( 'champions_can_show_post_thumbnail', ! post_password_required() && ! is_attachment() && has_post_thumbnail() );
 }
 
 /**
  * Returns true if image filters are enabled on the theme options.
  */
-function twentynineteen_image_filters_enabled() {
+function champions_image_filters_enabled() {
 	return 0 !== get_theme_mod( 'image_filter', 1 );
 }
 
 /**
  * Returns the size for avatars used in the theme.
  */
-function twentynineteen_get_avatar_size() {
+function champions_get_avatar_size() {
 	return 60;
 }
 
@@ -33,7 +33,7 @@ function twentynineteen_get_avatar_size() {
  *
  * @see get_comment_class()
  */
-function twentynineteen_is_comment_by_post_author( $comment = null ) {
+function champions_is_comment_by_post_author( $comment = null ) {
 	if ( is_object( $comment ) && $comment->user_id > 0 ) {
 		$user = get_userdata( $comment->user_id );
 		$post = get_post( $comment->comment_post_ID );
@@ -47,7 +47,7 @@ function twentynineteen_is_comment_by_post_author( $comment = null ) {
 /**
  * Returns information about the current post's discussion, with cache support.
  */
-function twentynineteen_get_discussion_data() {
+function champions_get_discussion_data() {
 	static $discussion, $post_id;
 
 	$current_post_id = get_the_ID();
@@ -84,7 +84,7 @@ function twentynineteen_get_discussion_data() {
 /**
  * Converts HSL to HEX colors.
  */
-function twentynineteen_hsl_hex( $h, $s, $l, $to_hex = true ) {
+function champions_hsl_hex( $h, $s, $l, $to_hex = true ) {
 
 	$h /= 360;
 	$s /= 100;

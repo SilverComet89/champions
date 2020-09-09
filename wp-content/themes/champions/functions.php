@@ -17,7 +17,7 @@ if ( version_compare( $GLOBALS['wp_version'], '4.7', '<' ) ) {
 	return;
 }
 
-if ( ! function_exists( 'twentynineteen_setup' ) ) :
+if ( ! function_exists( 'champions_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -25,14 +25,14 @@ if ( ! function_exists( 'twentynineteen_setup' ) ) :
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	function twentynineteen_setup() {
+	function champions_setup() {
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
 		 * If you're building a theme based on Twenty Nineteen, use a find and replace
-		 * to change 'twentynineteen' to the name of your theme in all the template files.
+		 * to change 'champions' to the name of your theme in all the template files.
 		 */
-		load_theme_textdomain( 'twentynineteen', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'champions', get_template_directory() . '/languages' );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
@@ -56,9 +56,9 @@ if ( ! function_exists( 'twentynineteen_setup' ) ) :
 		// This theme uses wp_nav_menu() in two locations.
 		register_nav_menus(
 			array(
-				'menu-1' => __( 'Primary', 'twentynineteen' ),
-				'footer' => __( 'Footer Menu', 'twentynineteen' ),
-				'social' => __( 'Social Links Menu', 'twentynineteen' ),
+				'menu-1' => __( 'Primary', 'champions' ),
+				'footer' => __( 'Footer Menu', 'champions' ),
+				'social' => __( 'Social Links Menu', 'champions' ),
 			)
 		);
 
@@ -114,26 +114,26 @@ if ( ! function_exists( 'twentynineteen_setup' ) ) :
 			'editor-font-sizes',
 			array(
 				array(
-					'name'      => __( 'Small', 'twentynineteen' ),
-					'shortName' => __( 'S', 'twentynineteen' ),
+					'name'      => __( 'Small', 'champions' ),
+					'shortName' => __( 'S', 'champions' ),
 					'size'      => 19.5,
 					'slug'      => 'small',
 				),
 				array(
-					'name'      => __( 'Normal', 'twentynineteen' ),
-					'shortName' => __( 'M', 'twentynineteen' ),
+					'name'      => __( 'Normal', 'champions' ),
+					'shortName' => __( 'M', 'champions' ),
 					'size'      => 22,
 					'slug'      => 'normal',
 				),
 				array(
-					'name'      => __( 'Large', 'twentynineteen' ),
-					'shortName' => __( 'L', 'twentynineteen' ),
+					'name'      => __( 'Large', 'champions' ),
+					'shortName' => __( 'L', 'champions' ),
 					'size'      => 36.5,
 					'slug'      => 'large',
 				),
 				array(
-					'name'      => __( 'Huge', 'twentynineteen' ),
-					'shortName' => __( 'XL', 'twentynineteen' ),
+					'name'      => __( 'Huge', 'champions' ),
+					'shortName' => __( 'XL', 'champions' ),
 					'size'      => 49.5,
 					'slug'      => 'huge',
 				),
@@ -145,27 +145,27 @@ if ( ! function_exists( 'twentynineteen_setup' ) ) :
 			'editor-color-palette',
 			array(
 				array(
-					'name'  => 'default' === get_theme_mod( 'primary_color' ) ? __( 'Blue', 'twentynineteen' ) : null,
+					'name'  => 'default' === get_theme_mod( 'primary_color' ) ? __( 'Blue', 'champions' ) : null,
 					'slug'  => 'primary',
-					'color' => twentynineteen_hsl_hex( 'default' === get_theme_mod( 'primary_color' ) ? 199 : get_theme_mod( 'primary_color_hue', 199 ), 100, 33 ),
+					'color' => champions_hsl_hex( 'default' === get_theme_mod( 'primary_color' ) ? 199 : get_theme_mod( 'primary_color_hue', 199 ), 100, 33 ),
 				),
 				array(
-					'name'  => 'default' === get_theme_mod( 'primary_color' ) ? __( 'Dark Blue', 'twentynineteen' ) : null,
+					'name'  => 'default' === get_theme_mod( 'primary_color' ) ? __( 'Dark Blue', 'champions' ) : null,
 					'slug'  => 'secondary',
-					'color' => twentynineteen_hsl_hex( 'default' === get_theme_mod( 'primary_color' ) ? 199 : get_theme_mod( 'primary_color_hue', 199 ), 100, 23 ),
+					'color' => champions_hsl_hex( 'default' === get_theme_mod( 'primary_color' ) ? 199 : get_theme_mod( 'primary_color_hue', 199 ), 100, 23 ),
 				),
 				array(
-					'name'  => __( 'Dark Gray', 'twentynineteen' ),
+					'name'  => __( 'Dark Gray', 'champions' ),
 					'slug'  => 'dark-gray',
 					'color' => '#111',
 				),
 				array(
-					'name'  => __( 'Light Gray', 'twentynineteen' ),
+					'name'  => __( 'Light Gray', 'champions' ),
 					'slug'  => 'light-gray',
 					'color' => '#767676',
 				),
 				array(
-					'name'  => __( 'White', 'twentynineteen' ),
+					'name'  => __( 'White', 'champions' ),
 					'slug'  => 'white',
 					'color' => '#FFF',
 				),
@@ -176,20 +176,20 @@ if ( ! function_exists( 'twentynineteen_setup' ) ) :
 		add_theme_support( 'responsive-embeds' );
 	}
 endif;
-add_action( 'after_setup_theme', 'twentynineteen_setup' );
+add_action( 'after_setup_theme', 'champions_setup' );
 
 /**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function twentynineteen_widgets_init() {
+function champions_widgets_init() {
 
 	register_sidebar(
 		array(
-			'name'          => __( 'Footer', 'twentynineteen' ),
+			'name'          => __( 'Footer', 'champions' ),
 			'id'            => 'sidebar-1',
-			'description'   => __( 'Add widgets here to appear in your footer.', 'twentynineteen' ),
+			'description'   => __( 'Add widgets here to appear in your footer.', 'champions' ),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
 			'before_title'  => '<h2 class="widget-title">',
@@ -198,7 +198,7 @@ function twentynineteen_widgets_init() {
 	);
 
 }
-add_action( 'widgets_init', 'twentynineteen_widgets_init' );
+add_action( 'widgets_init', 'champions_widgets_init' );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -207,34 +207,34 @@ add_action( 'widgets_init', 'twentynineteen_widgets_init' );
  *
  * @global int $content_width Content width.
  */
-function twentynineteen_content_width() {
+function champions_content_width() {
 	// This variable is intended to be overruled from themes.
 	// Open WPCS issue: {@link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/issues/1043}.
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-	$GLOBALS['content_width'] = apply_filters( 'twentynineteen_content_width', 640 );
+	$GLOBALS['content_width'] = apply_filters( 'champions_content_width', 640 );
 }
-add_action( 'after_setup_theme', 'twentynineteen_content_width', 0 );
+add_action( 'after_setup_theme', 'champions_content_width', 0 );
 
 /**
  * Enqueue scripts and styles.
  */
-function twentynineteen_scripts() {
-	wp_enqueue_style( 'twentynineteen-style', get_stylesheet_uri(), array(), wp_get_theme()->get( 'Version' ) );
+function champions_scripts() {
+	wp_enqueue_style( 'champions-style', get_stylesheet_uri(), array(), wp_get_theme()->get( 'Version' ) );
 
-	wp_style_add_data( 'twentynineteen-style', 'rtl', 'replace' );
+	wp_style_add_data( 'champions-style', 'rtl', 'replace' );
 
 	if ( has_nav_menu( 'menu-1' ) ) {
-		wp_enqueue_script( 'twentynineteen-priority-menu', get_theme_file_uri( '/js/priority-menu.js' ), array(), '20181214', true );
-		wp_enqueue_script( 'twentynineteen-touch-navigation', get_theme_file_uri( '/js/touch-keyboard-navigation.js' ), array(), '20181231', true );
+		wp_enqueue_script( 'champions-priority-menu', get_theme_file_uri( '/js/priority-menu.js' ), array(), '20181214', true );
+		wp_enqueue_script( 'champions-touch-navigation', get_theme_file_uri( '/js/touch-keyboard-navigation.js' ), array(), '20181231', true );
 	}
 
-	wp_enqueue_style( 'twentynineteen-print-style', get_template_directory_uri() . '/print.css', array(), wp_get_theme()->get( 'Version' ), 'print' );
+	wp_enqueue_style( 'champions-print-style', get_template_directory_uri() . '/print.css', array(), wp_get_theme()->get( 'Version' ), 'print' );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'twentynineteen_scripts' );
+add_action( 'wp_enqueue_scripts', 'champions_scripts' );
 
 /**
  * Fix skip link focus in IE11.
@@ -244,7 +244,7 @@ add_action( 'wp_enqueue_scripts', 'twentynineteen_scripts' );
  *
  * @link https://git.io/vWdr2
  */
-function twentynineteen_skip_link_focus_fix() {
+function champions_skip_link_focus_fix() {
 	// The following is minified via `terser --compress --mangle -- js/skip-link-focus-fix.js`.
 	?>
 	<script>
@@ -252,27 +252,27 @@ function twentynineteen_skip_link_focus_fix() {
 	</script>
 	<?php
 }
-add_action( 'wp_print_footer_scripts', 'twentynineteen_skip_link_focus_fix' );
+add_action( 'wp_print_footer_scripts', 'champions_skip_link_focus_fix' );
 
 /**
  * Enqueue supplemental block editor styles.
  */
-function twentynineteen_editor_customizer_styles() {
+function champions_editor_customizer_styles() {
 
-	wp_enqueue_style( 'twentynineteen-editor-customizer-styles', get_theme_file_uri( '/style-editor-customizer.css' ), false, '1.1', 'all' );
+	wp_enqueue_style( 'champions-editor-customizer-styles', get_theme_file_uri( '/style-editor-customizer.css' ), false, '1.1', 'all' );
 
 	if ( 'custom' === get_theme_mod( 'primary_color' ) ) {
 		// Include color patterns.
 		require_once get_parent_theme_file_path( '/inc/color-patterns.php' );
-		wp_add_inline_style( 'twentynineteen-editor-customizer-styles', twentynineteen_custom_colors_css() );
+		wp_add_inline_style( 'champions-editor-customizer-styles', champions_custom_colors_css() );
 	}
 }
-add_action( 'enqueue_block_editor_assets', 'twentynineteen_editor_customizer_styles' );
+add_action( 'enqueue_block_editor_assets', 'champions_editor_customizer_styles' );
 
 /**
  * Display custom color CSS in customizer and on frontend.
  */
-function twentynineteen_colors_css_wrap() {
+function champions_colors_css_wrap() {
 
 	// Only include custom colors in customizer or frontend.
 	if ( ( ! is_customize_preview() && 'default' === get_theme_mod( 'primary_color', 'default' ) ) || is_admin() ) {
@@ -288,21 +288,21 @@ function twentynineteen_colors_css_wrap() {
 	?>
 
 	<style type="text/css" id="custom-theme-colors" <?php echo is_customize_preview() ? 'data-hue="' . absint( $primary_color ) . '"' : ''; ?>>
-		<?php echo twentynineteen_custom_colors_css(); ?>
+		<?php echo champions_custom_colors_css(); ?>
 	</style>
 	<?php
 }
-add_action( 'wp_head', 'twentynineteen_colors_css_wrap' );
+add_action( 'wp_head', 'champions_colors_css_wrap' );
 
 /**
  * SVG Icons class.
  */
-require get_template_directory() . '/classes/class-twentynineteen-svg-icons.php';
+require get_template_directory() . '/classes/class-champions-svg-icons.php';
 
 /**
  * Custom Comment Walker template.
  */
-require get_template_directory() . '/classes/class-twentynineteen-walker-comment.php';
+require get_template_directory() . '/classes/class-champions-walker-comment.php';
 
 /**
  * Common theme functions.

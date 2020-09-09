@@ -19,7 +19,7 @@
  *
  * @since Twenty Nineteen 1.0
  */
-class TwentyNineteen_SVG_Icons {
+class champions_SVG_Icons {
 
 	/**
 	 * Gets the SVG code for a given icon.

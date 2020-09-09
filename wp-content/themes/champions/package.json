@@ -1,11 +1,11 @@
 {
-  "name": "twentynineteen",
+  "name": "Champions",
   "version": "1.7.0",
-  "description": "Default WP Theme",
+  "description": "Theme for Champions initial interview test.",
   "bugs": {
-    "url": "https://github.com/WordPress/twentynineteen/issues"
+    "url": "https://github.com/SilverComet89/champions/issues"
   },
-  "homepage": "https://github.com/WordPress/twentynineteen#readme",
+  "homepage": "https://github.com/SilverComet89/champions#readme",
   "devDependencies": {
     "@wordpress/browserslist-config": "^2.7.0",
     "autoprefixer": "^9.8.5",
