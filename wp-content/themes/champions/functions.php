@@ -182,20 +182,7 @@ function champions_widgets_init() {
 }
 add_action( 'widgets_init', 'champions_widgets_init' );
 
-/**
- * Set the content width in pixels, based on the theme's design and stylesheet.
- *
- * Priority 0 to make it available to lower priority callbacks.
- *
- * @global int $content_width Content width.
- */
-function champions_content_width() {
-	// This variable is intended to be overruled from themes.
-	// Open WPCS issue: {@link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/issues/1043}.
-	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-	$GLOBALS['content_width'] = apply_filters( 'champions_content_width', 640 );
-}
-add_action( 'after_setup_theme', 'champions_content_width', 0 );
+
 
 /**
  * Enqueue scripts and styles.
@@ -231,45 +218,6 @@ function champions_skip_link_focus_fix() {
 }
 add_action( 'wp_print_footer_scripts', 'champions_skip_link_focus_fix' );
 
-/**
- * Enqueue supplemental block editor styles.
- */
-function champions_editor_customizer_styles() {
-
-	wp_enqueue_style( 'champions-editor-customizer-styles', get_theme_file_uri( '/style-editor-customizer.css' ), false, '1.1', 'all' );
-
-	if ( 'custom' === get_theme_mod( 'primary_color' ) ) {
-		// Include color patterns.
-		require_once get_parent_theme_file_path( '/inc/color-patterns.php' );
-		wp_add_inline_style( 'champions-editor-customizer-styles', champions_custom_colors_css() );
-	}
-}
-add_action( 'enqueue_block_editor_assets', 'champions_editor_customizer_styles' );
-
-/**
- * Display custom color CSS in customizer and on frontend.
- */
-function champions_colors_css_wrap() {
-
-	// Only include custom colors in customizer or frontend.
-	if ( ( ! is_customize_preview() && 'default' === get_theme_mod( 'primary_color', 'default' ) ) || is_admin() ) {
-		return;
-	}
-
-	require_once get_parent_theme_file_path( '/inc/color-patterns.php' );
-
-	$primary_color = 199;
-	if ( 'default' !== get_theme_mod( 'primary_color', 'default' ) ) {
-		$primary_color = get_theme_mod( 'primary_color_hue', 199 );
-	}
-	?>
-
-	<style type="text/css" id="custom-theme-colors" <?php echo is_customize_preview() ? 'data-hue="' . absint( $primary_color ) . '"' : ''; ?>>
-		<?php echo champions_custom_colors_css(); ?>
-	</style>
-	<?php
-}
-add_action( 'wp_head', 'champions_colors_css_wrap' );
 
 /**
  * SVG Icons class.
@@ -313,7 +261,7 @@ require get_template_directory() . '/inc/customizer.php';
 // Replacing defaults with theme defaults, allowing for customisation whilst also allowing for less initial setup.
 
 /**
- * custom_option_description function
+ * custom_option_description
  * @param [string] $value
  * @return string
  */
@@ -323,8 +271,12 @@ function champions_option_description($value) {
 
 add_filter('option_blogdescription', 'champions_option_description', 10, 1);
 
-// Creating our menus
-function champions_setup_theme() {
+/**
+ * champions_custom_setup
+ * Creates our menu locations, creates a menu at locations, adds default menu items.
+ * @return void
+ */
+function champions_custom_setup() {
 	register_nav_menus(
 	  array(
 		'header-menu' => __( 'Header Menu Location' ),
@@ -355,7 +307,7 @@ function champions_setup_theme() {
 		$pageItem = array(
 			"menu-item-title" => __('About us'),
 			"menu-item-classes" => 'about us',
-			"menu-item-url" => get_permalink(home_url()),
+			"menu-item-url" => home_url(),
 			"menu-item-status" => "publish",
 		);
 
@@ -388,15 +340,79 @@ function champions_setup_theme() {
 	add_theme_support(
 		'custom-logo',
 		array(
-			'height'      => 162,
-			'width'       => 40,
-			'flex-width'  => true,
-			'flex-height' => true,
+			'height'        => 162,
+			'width'         => 40,
+			'flex-width'    => true,
+			'flex-height'   => true,
 		)
 	);
+
+	/**
+	 * Add support for core custom header
+	 * 
+	 * @link https://codex.wordpress.org/Custom_Headers
+	 */
+    add_theme_support( 'custom-header', array(
+        'default-image'      => get_template_directory_uri() . '/images/Webathon_lumberjack man.png',
+		'header-text'        => false,
+        'width'              => 1280,
+        'height'             => 518,
+        'flex-width'         => false,
+        'flex-height'        => false,
+    ));
 }
 
 add_action( 'after_setup_theme', 'champions_custom_setup' );
 
 
+function champions_custom_css() {
+	$highlight_color = get_theme_mod('champions_color_highlight', '#FFA000');
+	$header_text_color = get_theme_mod('champions_color_header_main', '#FFF');
+	$background_color = get_theme_mod('champions_color_background_page', '#FFF');
+	$secondary_color = get_theme_mod('champions_color_secondary_color', '#3C2F19');
+	$background_content_light = get_theme_mod('champions_color_background_content_light', '#EBEBEB');
+	$background_content_dark = get_theme_mod('champions_color_background_content_dark', '#D6D6D6');
 
+	$css = <<<CSS
+		/*
+		* Set use of the highlight color (orange by default, set inside customiser)
+		*/	
+		.header-text > h2 > b
+		 { color: {$highlight_color}; }
+		 
+		.header-text > button
+		{ background-color: {$highlight_color}; }
+
+		/*
+		* Set header text color.
+		*/
+		.header-text > h1,
+		.header-text > h2
+		{ color: {$header_text_color}; }
+
+		html,
+		body,
+		.main-navigation .main-menu > li > a,
+		.main-navigation .main-menu > li > a:hover,
+		.main-navigation .main-menu > li > a:active,
+		section.content-section > .section-text > h1,
+		section.content-section > .section-text > p
+		{ color: {$secondary_color} }
+
+		.droplets > .droplet-item > .droplet-image 
+		{ background-color: {$background_color}; }
+
+		section.content-light 
+		{ background-color: {$background_content_light}; }
+
+		section.content-section:nth-child(odd) 
+		{ background-color: {$background_content_light}; }
+		section.content-section:nth-child(even) 
+		{ background-color: {$background_content_dark}; }
+		
+CSS;
+
+	echo '<style>'.$css.'</style>';
+}
+
+add_action( 'wp_head', 'champions_custom_css' );

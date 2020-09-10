@@ -82,22 +82,213 @@ function champions_customize_register( $wp_customize ) {
 		)
 	);
 
-	// Add image filter setting and control.
+	/**
+	 * Header text
+	 * @link https://developer.wordpress.org/themes/customize-api/customizer-objects/
+	 */
 	$wp_customize->add_setting(
-		'image_filter',
+		'champions_header_title',
 		array(
-			'default'           => 1,
-			'sanitize_callback' => 'absint',
-			'transport'         => 'postMessage',
+			'default'           => 'Your new website solution',
+			'sanitize_callback' => 'wp_kses_post',
+			'type' => 'theme_mod',
 		)
 	);
 
 	$wp_customize->add_control(
-		'image_filter',
+		'champions_header_title',
 		array(
-			'label'   => __( 'Apply a filter to featured images using the primary color', 'champions' ),
-			'section' => 'colors',
-			'type'    => 'checkbox',
+			'label'   => __( 'Title text', 'champions' ),
+			'section' => 'header_image',
+			'type'    => 'textarea',
+		)
+	);
+
+	/**
+	 * Header sub text
+	 * @link https://developer.wordpress.org/themes/customize-api/customizer-objects/
+	 */
+	$wp_customize->add_setting(
+		'champions_header_subtitle',
+		array(
+			'default'           => 'Become <b>successful</b> with our integrated web packages',
+			'sanitize_callback' => 'wp_kses_post',
+			'type' => 'theme_mod',
+		)
+	);
+
+	$wp_customize->add_control(
+		'champions_header_subtitle',
+		array(
+			'label'   => __( 'Subtitle text', 'champions' ),
+			'section' => 'header_image',
+			'type'    => 'textarea',
+		)
+	);
+
+	/**
+	 * Button text
+	 * @link https://developer.wordpress.org/themes/customize-api/customizer-objects/
+	 */
+	$wp_customize->add_setting(
+		'champions_button_text',
+		array(
+			'default'           => 'Learn more',
+			'sanitize_callback' => 'absint',
+			'type' => 'theme_mod',
+		)
+	);
+
+	$wp_customize->add_control(
+		'champions_button_text',
+		array(
+			'label'   => __( 'Button text', 'champions' ),
+			'section' => 'header_image',
+			'type'    => 'text',
+		)
+	);
+
+	/**
+	 * Button text
+	 * @link https://developer.wordpress.org/themes/customize-api/customizer-objects/
+	 */
+	$wp_customize->add_setting(
+		'champions_color_highlight',
+		array(
+			'default'           => '#FFA000',
+			'sanitize_callback' => 'sanitize_hex_color',
+			'type' => 'theme_mod',
+		)
+	);
+
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control( 
+            $wp_customize, 
+            'champions_color_highlight', 
+			array(              
+				'label'      => __( 'Highlight colour', 'theme_slug' ),
+				'section'    => 'colors'       
+			)
+		)
+	);
+
+	/**
+	 * Main header-text h1/h2 color.
+	 * @link https://developer.wordpress.org/themes/customize-api/customizer-objects/
+	 */
+	$wp_customize->add_setting(
+		'champions_color_header_main',
+		array(
+			'default'           => '#FFF',
+			'sanitize_callback' => 'sanitize_hex_color',
+			'type' => 'theme_mod',
+		)
+	);
+
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control( 
+            $wp_customize, 
+            'champions_color_header_main', 
+			array(              
+				'label'      => __( 'Main header text colour', 'theme_slug' ),
+				'section'    => 'colors'       
+			)
+		)
+	);
+
+	/**
+	 * Page background color.
+	 * @link https://developer.wordpress.org/themes/customize-api/customizer-objects/
+	 */
+	$wp_customize->add_setting(
+		'champions_color_background_page',
+		array(
+			'default'           => '#FFF',
+			'sanitize_callback' => 'sanitize_hex_color',
+			'type' => 'theme_mod',
+		)
+	);
+
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control( 
+            $wp_customize, 
+            'champions_color_background_page', 
+			array(              
+				'label'      => __('Page background', 'theme_slug' ),
+				'section'    => 'colors'       
+			)
+		)
+	);
+
+	/**
+	 * secondary color.
+	 * @link https://developer.wordpress.org/themes/customize-api/customizer-objects/
+	 */
+	$wp_customize->add_setting(
+		'champions_color_secondary_color',
+		array(
+			'default'           => '#3C2F19',
+			'sanitize_callback' => 'sanitize_hex_color',
+			'type' => 'theme_mod',
+		)
+	);
+
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control( 
+            $wp_customize, 
+            'champions_color_secondary_color', 
+			array(              
+				'label'      => __('Secondary colour', 'theme_slug' ),
+				'section'    => 'colors'       
+			)
+		)
+	);
+
+	/**
+	 * background content light color.
+	 * @link https://developer.wordpress.org/themes/customize-api/customizer-objects/
+	 */
+	$wp_customize->add_setting(
+		'champions_color_background_content_light',
+		array(
+			'default'           => '#EBEBEB',
+			'sanitize_callback' => 'sanitize_hex_color',
+			'type' => 'theme_mod',
+		)
+	);
+
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control( 
+            $wp_customize, 
+            'champions_color_background_content_light', 
+			array(              
+				'label'      => __('Secondary colour', 'theme_slug' ),
+				'section'    => 'colors'       
+			)
+		)
+	);
+
+	/**
+	 * background content dark color.
+	 * @link https://developer.wordpress.org/themes/customize-api/customizer-objects/
+	 */
+	$wp_customize->add_setting(
+		'champions_color_background_content_dark',
+		array(
+			'default'           => '#D6D6D6',
+			'sanitize_callback' => 'sanitize_hex_color',
+			'type' => 'theme_mod',
+		)
+	);
+
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control( 
+            $wp_customize, 
+            'champions_color_background_content_dark', 
+			array(              
+				'label'      => __('Secondary colour', 'theme_slug' ),
+				'section'    => 'colors'       
+			)
 		)
 	);
 }

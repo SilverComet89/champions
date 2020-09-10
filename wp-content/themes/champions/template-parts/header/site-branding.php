@@ -1,10 +1,9 @@
 <?php
 /**
- * Displays header site branding
+ * Displays header jumbotron
  *
  * @package WordPress
  * @subpackage Twenty_Nineteen
- * @since Twenty Nineteen 1.0
  */
 ?>
 <div class="site-branding">
@@ -17,13 +16,7 @@
 	<?php endif; ?>
 	</div>
 	<?php $blog_info = get_bloginfo( 'name' ); ?>
-	<?php if (!empty( $blog_info )) : ?>
-		<?php if ( is_front_page() && is_home() ) : ?>
-			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-		<?php else : ?>
-			<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-		<?php endif; ?>
-	<?php endif; ?>
+	
 
 	<?php
 	$description = get_bloginfo( 'description', 'display' );
