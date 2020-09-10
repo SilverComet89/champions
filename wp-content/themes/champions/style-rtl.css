@@ -3717,6 +3717,12 @@ body.page .main-navigation {
   }
 }
 
+@media only screen and (max-width: 768px) {
+  #site-header > a > .header-text {
+    width: 75%;
+  }
+}
+
 #site-header > a > .header-text h1, #site-header > a > .header-text h2 {
   font-family: "Roboto", sans-serif;
 }
@@ -3793,6 +3799,25 @@ body.page .main-navigation {
   padding: 1rem;
   border-radius: 100%;
   box-shadow: 0px 5px 5px 0px #d1d1d1;
+}
+
+@media only screen and (max-width: 768px) {
+  .droplets .droplet-item .droplet-image {
+    padding: .5rem;
+    max-width: 85px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1279.9px) {
+  .droplets .droplet-item .droplet-image img {
+    transform: scale(0.75);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .droplets .droplet-item .droplet-image img {
+    transform: scale(0.5);
+  }
 }
 
 section.content-section {
