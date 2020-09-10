@@ -117,7 +117,7 @@ section.content-section {
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: space-around;
-	align-items: flex-start;
+	align-items: center;
 	padding: 6% $size__site-margins;
 
 	&:last-child {
@@ -154,6 +154,13 @@ section.content-section {
 		h1 {
 			font-size: $font__size-xl;
 			line-height: $font__size-sm;
+
+			@media only screen and (min-width: $tablet_width) and (max-width: $desktop_width) {
+				font-size: $font__size-lg
+			}
+			@media only screen and (max-width: $tablet_width) {
+				font-size: $font__size-md
+			}
 		}
 
 		p {
@@ -161,6 +168,10 @@ section.content-section {
 			font-weight: $font__champions_light;
 			font-size: $font__size-sm;
 			line-height: $font__size-md;
+
+			@media only screen and (max-width: $tablet_width) {
+				font-size: $font__size-xs;
+			}
 		}
 	}
 }

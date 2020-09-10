@@ -3805,6 +3805,7 @@ body.page .main-navigation {
   .droplets .droplet-item .droplet-image {
     padding: .5rem;
     max-width: 85px;
+    max-height: 85px;
   }
 }
 
@@ -3824,7 +3825,7 @@ section.content-section {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
-  align-items: flex-start;
+  align-items: center;
   padding: 6% 13%;
 }
 
@@ -3862,11 +3863,29 @@ section.content-section .section-text h1 {
   line-height: 0.88889em;
 }
 
+@media only screen and (min-width: 768px) and (max-width: 1279.9px) {
+  section.content-section .section-text h1 {
+    font-size: 1.6875em;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  section.content-section .section-text h1 {
+    font-size: 1.125em;
+  }
+}
+
 section.content-section .section-text p {
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-size: 0.88889em;
   line-height: 1.125em;
+}
+
+@media only screen and (max-width: 768px) {
+  section.content-section .section-text p {
+    font-size: 0.88889em;
+  }
 }
 
 /* Content */
@@ -5233,7 +5252,7 @@ section.content-section .section-text p {
   }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1040px) {
+@media only screen and (max-width: 1040px) {
   #colophon .footer-menu > li a {
     font-size: 0.71111em;
     line-height: 0.71111em;
@@ -5252,6 +5271,12 @@ section.content-section .section-text p {
 @media only screen and (max-width: 768px) {
   #colophon .footer-menu > li ul.sub-menu {
     padding-top: 0em;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #colophon .footer-menu > li ul.sub-menu {
+    padding-bottom: 1em;
   }
 }
 
