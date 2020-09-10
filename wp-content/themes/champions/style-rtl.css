@@ -1,10 +1,10 @@
 @charset "UTF-8";
 /*
-Theme Name: Twenty Nineteen
+Theme Name: Champions
 Theme URI: https://wordpress.org/themes/champions/
 Author: the WordPress team
 Author URI: https://wordpress.org/
-Description: Our 2019 default theme is designed to show off the power of the block editor. It features custom styles for all the default blocks, and is built so that what you see in the editor looks like what you'll see on your website. Twenty Nineteen is designed to be adaptable to a wide range of websites, whether you’re running a photo blog, launching a new business, or supporting a non-profit. Featuring ample whitespace and modern sans-serif headlines paired with classic serif body text, it's built to be beautiful on all screen sizes.
+Description: Our 2019 default theme is designed to show off the power of the block editor. It features custom styles for all the default blocks, and is built so that what you see in the editor looks like what you'll see on your website. Champions is designed to be adaptable to a wide range of websites, whether you’re running a photo blog, launching a new business, or supporting a non-profit. Featuring ample whitespace and modern sans-serif headlines paired with classic serif body text, it's built to be beautiful on all screen sizes.
 Requires at least: 4.9.6
 Requires PHP: 5.2.4
 Version: 1.7
@@ -16,7 +16,7 @@ Tags: one-column, flexible-header, accessibility-ready, custom-colors, custom-me
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 
-Twenty Nineteen is based on Underscores https://underscores.me/, (C) 2012-2019 Automattic, Inc.
+Champions is based on Underscores https://underscores.me/, (C) 2012-2019 Automattic, Inc.
 Underscores is distributed under the terms of the GNU GPL v2 or later.
 
 Normalizing styles have been helped along thanks to the fine work of
@@ -3711,6 +3711,12 @@ body.page .main-navigation {
   height: 100%;
 }
 
+@media only screen and (min-width: 768px) and (max-width: 1279.9px) {
+  #site-header > a > .header-text {
+    width: 60%;
+  }
+}
+
 #site-header > a > .header-text h1, #site-header > a > .header-text h2 {
   font-family: "Roboto", sans-serif;
 }
@@ -3720,14 +3726,44 @@ body.page .main-navigation {
   line-height: 1.125em;
 }
 
+@media only screen and (min-width: 768px) and (max-width: 1279.9px) {
+  #site-header > a > .header-text h1 {
+    font-size: 1.6875em;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #site-header > a > .header-text h1 {
+    font-size: 1.125em;
+  }
+}
+
 #site-header > a > .header-text h2 {
   font-weight: 100;
   font-size: 1.40625em;
   line-height: 1.125em;
 }
 
+@media only screen and (min-width: 768px) and (max-width: 1279.9px) {
+  #site-header > a > .header-text h2 {
+    font-size: 1.125em;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #site-header > a > .header-text h2 {
+    font-size: 0.88889em;
+  }
+}
+
 #site-header > a > .header-text h2 b, #site-header > a > .header-text h2 strong {
   font-weight: 700;
+}
+
+#site-header > a > .header-text button {
+  border-radius: 10px;
+  font-weight: 600;
+  padding: .5em 1em;
 }
 
 .droplets {
@@ -3764,7 +3800,11 @@ section.content-section {
   flex-flow: row nowrap;
   justify-content: space-around;
   align-items: flex-start;
-  padding: 5% 13%;
+  padding: 6% 13%;
+}
+
+section.content-section:last-child {
+  padding-bottom: 9%;
 }
 
 section.content-section:nth-child(odd) .section-image {
@@ -3861,7 +3901,7 @@ section.content-section .section-text p {
 .site-logo .custom-logo-link {
   box-sizing: content-box;
   display: block;
-  width: 169;
+  width: 169px;
   height: 40px;
   overflow: hidden;
   float: right;
@@ -5112,60 +5152,92 @@ section.content-section .section-text p {
 ## Footer
 --------------------------------------------------------------*/
 /* Site footer */
-#colophon .widget-area,
-#colophon .site-info {
-  margin: calc(2 * 1rem) 1rem;
-}
-
-@media only screen and (min-width: 768px) {
-  #colophon .widget-area,
-  #colophon .site-info {
-    margin: calc(3 * 1rem) 13%;
-  }
-}
-
-#colophon .widget-column {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-#colophon .widget-column .widget {
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
-  hyphens: auto;
-  width: 100%;
-  word-wrap: break-word;
-}
-
-@media only screen and (min-width: 1279.9px) {
-  #colophon .widget-column .widget {
-    margin-left: calc(3 * 1rem);
-    width: calc(50% - (3 * 1rem));
-  }
+#colophon {
+  max-width: 1279.9px;
+  margin: 0 auto;
 }
 
 #colophon .site-info {
-  color: #767676;
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
-  hyphens: auto;
-  word-wrap: break-word;
+  padding: 1.5% 13% 5%;
 }
 
-#colophon .site-info a {
-  color: inherit;
+#colophon .site-info .site-logo .custom-logo-link {
+  float: none;
 }
 
-#colophon .site-info a:hover {
-  text-decoration: none;
-  color: #0073aa;
+#colophon .site-info .site-logo {
+  margin-top: 8em;
 }
 
-#colophon .site-info .imprint,
-#colophon .site-info .privacy-policy-link {
-  margin-left: 1rem;
+#colophon .site-info p {
+  width: 60%;
+  font-size: 0.88889em;
+  line-height: 1.125em;
+}
+
+#colophon .footer-menu > li {
+  display: inline-block;
+  vertical-align: top;
+}
+
+@media only screen and (max-width: 768px) {
+  #colophon .footer-menu > li {
+    display: block;
+  }
+}
+
+#colophon .footer-menu > li:last-child {
+  float: left;
+}
+
+@media only screen and (max-width: 768px) {
+  #colophon .footer-menu > li:last-child {
+    float: none;
+  }
+}
+
+#colophon .footer-menu > li a {
+  font-size: 1.40625em;
+  line-height: 0.71111em;
+}
+
+@media only screen and (min-width: 1040px) and (max-width: 1279.9px) {
+  #colophon .footer-menu > li a {
+    font-size: 1.125em;
+    line-height: 0.71111em;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1040px) {
+  #colophon .footer-menu > li a {
+    font-size: 0.71111em;
+    line-height: 0.71111em;
+  }
+}
+
+#colophon .footer-menu > li > a {
+  font-weight: 400;
+}
+
+#colophon .footer-menu > li ul.sub-menu {
+  padding-top: .75em;
+  padding-right: 0px;
+}
+
+@media only screen and (max-width: 768px) {
+  #colophon .footer-menu > li ul.sub-menu {
+    padding-top: 0em;
+  }
+}
+
+#colophon .footer-menu > li ul.sub-menu li {
+  display: block;
+}
+
+@media only screen and (max-width: 768px) {
+  #colophon .footer-menu > li ul.sub-menu li {
+    display: inline-block;
+  }
 }
 
 /* Widgets */

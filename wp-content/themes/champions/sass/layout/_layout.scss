@@ -21,6 +21,12 @@
 		left: $size__site-margins;
 		width: 38%;
 		height: 100%;
+		@media only screen and (min-width: $tablet_width) and (max-width: $desktop_width) {
+			width: 60%;
+		}
+		@media only screen and (max-width: $tablet_width) {
+			width: 75%;
+		}
 
 		h1, h2 {
 			font-family: $font__champions;
@@ -30,16 +36,34 @@
 		h1 {
 			font-weight: $font__champions_medium;
 			line-height: $font__size-md;
+			@media only screen and (min-width: $tablet_width) and (max-width: $desktop_width) {
+				font-size: $font__size-lg;
+			}
+			@media only screen and (max-width: $tablet_width) {
+				font-size: $font__size-md;
+			}
 		}
 
 		h2 {
 			font-weight: $font__champions_thin;
 			font-size: $font__size-lm;
 			line-height: $font__size-md;
+			@media only screen and (min-width: $tablet_width) and (max-width: $desktop_width) {
+				font-size: $font__size-md;
+			}
+			@media only screen and (max-width: $tablet_width) {
+				font-size: $font__size-sm;
+			}
 
 			b, strong {
 				font-weight: $font__champions_bold;
 			}
+		}
+
+		button {
+			border-radius: 10px;
+			font-weight: $font__champions_medium;
+			padding: .5em 1em;
 		}
 	}
 }
@@ -79,7 +103,11 @@ section.content-section {
 	flex-flow: row nowrap;
 	justify-content: space-around;
 	align-items: flex-start;
-	padding: 5% $size__site-margins;
+	padding: 6% $size__site-margins;
+
+	&:last-child {
+		padding-bottom: 9%;
+	}
 
 	&:nth-child(odd) {
 		.section-image {

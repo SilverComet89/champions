@@ -300,9 +300,10 @@ function champions_custom_setup() {
 	$locations['footer-menu'] = $menu_footer->term_id;
 	set_theme_mod('nav_menu_locations', $locations);
 
-
+	// Header menu
 	$pageItem = wp_get_nav_menu_items($menu_header->term_id, ["object"=>"page"] );
 	if(!$pageItem){
+		
 		// Now add default values to our menus.
 		$pageItem = array(
 			"menu-item-title" => __('About us'),
@@ -312,24 +313,158 @@ function champions_custom_setup() {
 		);
 
 		wp_update_nav_menu_item($menu_header->term_id, 0, $pageItem);
-		wp_update_nav_menu_item($menu_footer->term_id, 0, $pageItem);
 
 		// Now all other items are the same format, but with title changed as dummy links.
 		$pageItem["menu-item-title"] = __('Products');
 		$pageItem["menu-item-classes"] = 'products';
 		wp_update_nav_menu_item($menu_header->term_id, 0, $pageItem);
-		wp_update_nav_menu_item($menu_footer->term_id, 0, $pageItem);
 		$pageItem["menu-item-title"] = __('Careers');
 		$pageItem["menu-item-classes"] = 'careers';
 		wp_update_nav_menu_item($menu_header->term_id, 0, $pageItem);
-		wp_update_nav_menu_item($menu_footer->term_id, 0, $pageItem);
-		$pageItem["menu-item-title"] = __('Social');
-		$pageItem["menu-item-classes"] = 'social';
-		wp_update_nav_menu_item($menu_footer->term_id, 0, $pageItem);
 		$pageItem["menu-item-title"] = __('Contact');
 		$pageItem["menu-item-classes"] = 'contact';
 		wp_update_nav_menu_item($menu_header->term_id, 0, $pageItem);
-		wp_update_nav_menu_item($menu_footer->term_id, 0, $pageItem);
+	}
+
+	// Footer menu, only difference is a new column and a list of children added in.
+	$pageItem = wp_get_nav_menu_items($menu_footer->term_id, ["object"=>"page"] );
+	if(!$pageItem){
+		// Now add default values to our menus.
+		$menuItems = array();
+		$menuItems['about'] = wp_update_nav_menu_item($menu_footer->term_id, 0, array(
+			"menu-item-title" => __('About us'),
+			"menu-item-classes" => 'about-us',
+			"menu-item-url" => home_url(),
+			"menu-item-status" => "publish",
+		));
+
+		$menuItems['who_we_are'] = wp_update_nav_menu_item($menu_footer->term_id, 0, array(
+			"menu-item-title" => __('Who we are'),
+			"menu-item-classes" => 'who-we-are',
+			"menu-item-url" => home_url(),
+			"menu-item-status" => "publish",
+			"menu-item-parent-id" => $menuItems['about']
+		));
+
+		$menuItems['our_goal'] = wp_update_nav_menu_item($menu_footer->term_id, 0, array(
+			"menu-item-title" => __('Our goal'),
+			"menu-item-classes" => 'our-goal',
+			"menu-item-url" => home_url(),
+			"menu-item-status" => "publish",
+			"menu-item-parent-id" => $menuItems['about']
+		));
+
+		$menuItems['products'] = wp_update_nav_menu_item($menu_footer->term_id, 0, array(
+			"menu-item-title" => __('Products'),
+			"menu-item-classes" => 'products',
+			"menu-item-url" => home_url(),
+			"menu-item-status" => "publish",
+		));
+
+		$menuItems['who_we_are'] = wp_update_nav_menu_item($menu_footer->term_id, 0, array(
+			"menu-item-title" => __('Web solution'),
+			"menu-item-classes" => 'web-solution',
+			"menu-item-url" => home_url(),
+			"menu-item-status" => "publish",
+			"menu-item-parent-id" => $menuItems['products']
+		));
+
+		$menuItems['web_tool'] = wp_update_nav_menu_item($menu_footer->term_id, 0, array(
+			"menu-item-title" => __('Web tool'),
+			"menu-item-classes" => 'web-tool',
+			"menu-item-url" => home_url(),
+			"menu-item-status" => "publish",
+			"menu-item-parent-id" => $menuItems['products']
+		));
+
+		$menuItems['basic_package'] = wp_update_nav_menu_item($menu_footer->term_id, 0, array(
+			"menu-item-title" => __('Basic package'),
+			"menu-item-classes" => 'basic-package',
+			"menu-item-url" => home_url(),
+			"menu-item-status" => "publish",
+			"menu-item-parent-id" => $menuItems['products']
+		));
+
+		$menuItems['pro_package'] = wp_update_nav_menu_item($menu_footer->term_id, 0, array(
+			"menu-item-title" => __('Pro package'),
+			"menu-item-classes" => 'pro package',
+			"menu-item-url" => home_url(),
+			"menu-item-status" => "publish",
+			"menu-item-parent-id" => $menuItems['products']
+		));
+
+		$menuItems['careers'] = wp_update_nav_menu_item($menu_footer->term_id, 0, array(
+			"menu-item-title" => __('Careers'),
+			"menu-item-classes" => 'careers',
+			"menu-item-url" => home_url(),
+			"menu-item-status" => "publish",
+		));
+
+		$menuItems['internal'] = wp_update_nav_menu_item($menu_footer->term_id, 0, array(
+			"menu-item-title" => __('Internal'),
+			"menu-item-classes" => 'internal',
+			"menu-item-url" => home_url(),
+			"menu-item-status" => "publish",
+			"menu-item-parent-id" => $menuItems['careers']
+		));
+
+		$menuItems['freelance'] = wp_update_nav_menu_item($menu_footer->term_id, 0, array(
+			"menu-item-title" => __('Freelance'),
+			"menu-item-classes" => 'freelance',
+			"menu-item-url" => home_url(),
+			"menu-item-status" => "publish",
+			"menu-item-parent-id" => $menuItems['careers']
+		));
+
+		$menuItems['social'] = wp_update_nav_menu_item($menu_footer->term_id, 0, array(
+			"menu-item-title" => __('Social'),
+			"menu-item-classes" => 'social',
+			"menu-item-url" => home_url(),
+			"menu-item-status" => "publish",
+		));
+
+		$menuItems['facebook'] = wp_update_nav_menu_item($menu_footer->term_id, 0, array(
+			"menu-item-title" => __('Facebook'),
+			"menu-item-classes" => 'facebook',
+			"menu-item-url" => home_url(),
+			"menu-item-status" => "publish",
+			"menu-item-parent-id" => $menuItems['social']
+		));
+		$menuItems['twitter'] = wp_update_nav_menu_item($menu_footer->term_id, 0, array(
+			"menu-item-title" => __('Twitter'),
+			"menu-item-classes" => 'Twitter',
+			"menu-item-url" => home_url(),
+			"menu-item-status" => "publish",
+			"menu-item-parent-id" => $menuItems['social']
+		));
+		$menuItems['instagram'] = wp_update_nav_menu_item($menu_footer->term_id, 0, array(
+			"menu-item-title" => __('Instagram'),
+			"menu-item-classes" => 'instagram',
+			"menu-item-url" => home_url(),
+			"menu-item-status" => "publish",
+			"menu-item-parent-id" => $menuItems['social']
+		));
+
+		$menuItems['contact'] = wp_update_nav_menu_item($menu_footer->term_id, 0, array(
+			"menu-item-title" => __('Contact'),
+			"menu-item-classes" => 'contact',
+			"menu-item-url" => home_url(),
+			"menu-item-status" => "publish",
+		));
+		$menuItems['customer_support'] = wp_update_nav_menu_item($menu_footer->term_id, 0, array(
+			"menu-item-title" => __('Customer support'),
+			"menu-item-classes" => 'customer-support',
+			"menu-item-url" => home_url(),
+			"menu-item-status" => "publish",
+			"menu-item-parent-id" => $menuItems['contact']
+		));
+		$menuItems['business'] = wp_update_nav_menu_item($menu_footer->term_id, 0, array(
+			"menu-item-title" => __('Business'),
+			"menu-item-classes" => 'business',
+			"menu-item-url" => home_url(),
+			"menu-item-status" => "publish",
+			"menu-item-parent-id" => $menuItems['contact']
+		));
 	}
 
 	/**
@@ -372,22 +507,25 @@ function champions_custom_css() {
 	$secondary_color = get_theme_mod('champions_color_secondary_color', '#3C2F19');
 	$background_content_light = get_theme_mod('champions_color_background_content_light', '#EBEBEB');
 	$background_content_dark = get_theme_mod('champions_color_background_content_dark', '#D6D6D6');
+	$footer_text_color = get_theme_mod('champions_color_footer_text', '#B2B2B2');
 
 	$css = <<<CSS
 		/*
 		* Set use of the highlight color (orange by default, set inside customiser)
 		*/	
-		.header-text > h2 > b
+		.header-text > h2 > b,
+		a .header-text > button:hover
 		 { color: {$highlight_color}; }
 		 
-		.header-text > button
+		a .header-text > button
 		{ background-color: {$highlight_color}; }
 
 		/*
 		* Set header text color.
 		*/
 		.header-text > h1,
-		.header-text > h2
+		.header-text > h2,
+		a .header-text > button:hover
 		{ color: {$header_text_color}; }
 
 		html,
@@ -399,6 +537,9 @@ function champions_custom_css() {
 		section.content-section > .section-text > p
 		{ color: {$secondary_color} }
 
+		#colophon .site-info 
+		{ background-color: {$secondary_color} }
+
 		.droplets > .droplet-item > .droplet-image 
 		{ background-color: {$background_color}; }
 
@@ -409,6 +550,15 @@ function champions_custom_css() {
 		{ background-color: {$background_content_light}; }
 		section.content-section:nth-child(even) 
 		{ background-color: {$background_content_dark}; }
+
+		footer#colophon .site-info,
+		footer#colophon .site-info p,
+		footer#colophon .site-info a,
+		footer#colophon .site-info .footer-menu li > a
+		{ color: {$footer_text_color}; }
+
+		footer#colophon .site-info .footer-menu li.menu-item-has-children > a
+		{ color: {$header_text_color}; }
 		
 CSS;
 

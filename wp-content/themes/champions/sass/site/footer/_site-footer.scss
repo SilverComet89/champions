@@ -1,53 +1,77 @@
 /* Site footer */
 
 #colophon {
-
-	.widget-area,
-	.site-info {
-		margin: calc(2 * #{$size__spacing-unit}) $size__spacing-unit;
-
-		@include media(tablet) {
-			margin: calc(3 * #{$size__spacing-unit}) $size__site-margins;
-		}
-	}
-
-	.widget-column {
-		display: flex;
-		flex-wrap: wrap;
-		.widget {
-			-webkit-hyphens: auto;
-			-moz-hyphens: auto;
-			-ms-hyphens: auto;
-			hyphens: auto;
-			width: 100%;
-			word-wrap: break-word;
-			@include media(desktop) {
-				margin-right: calc(3 * #{$size__spacing-unit});
-				width: calc(50% - (3 * #{$size__spacing-unit}));
-			}
-		}
-	}
+	max-width: $desktop_width;
+	margin: 0 auto;
 
 	.site-info {
-		color: $color__text-light;
-		-webkit-hyphens: auto;
-		-moz-hyphens: auto;
-		-ms-hyphens: auto;
-		hyphens: auto;
-		word-wrap: break-word;
-
-		a {
-			color: inherit;
-
-			&:hover {
-				text-decoration: none;
-				color: $color__link;
-			}
+		.site-logo .custom-logo-link {
+			float: none;
 		}
 
-		.imprint,
-		.privacy-policy-link {
-			margin-right: $size__spacing-unit;
+		.site-logo {
+			margin-top: 8em;
+		}
+
+		p {
+			width: 60%;
+			font-size: $font__size-sm;
+			line-height: $font__size-md;
+		}
+		padding: 1.5% $size__site-margins 5%;
+	}
+
+	.footer-menu {
+		> li { 
+			display: inline-block;
+			vertical-align: top;
+
+			@media only screen and (max-width: $tablet_width) {
+				display: block;
+			}
+
+			&:last-child {
+				float: right;
+				@media only screen and (max-width: $tablet_width) {
+					float: none;
+				}
+				
+			}
+			a {
+				font-size: $font__size-lm;
+				line-height: $font__size_xs;
+
+				@media only screen and (min-width: 1040px) and (max-width: $desktop_width){
+					font-size: $font__size-md;
+					line-height: $font__size_xs;
+				}
+				@media only screen and (min-width: $tablet_width) and (max-width: 1040px){
+					font-size: $font__size-xs;
+					line-height: $font__size_xs;
+				}
+				
+			}
+
+			> a {
+				font-weight: $font__champions_regular;
+			}
+			
+
+			ul.sub-menu {
+				padding-top: .75em;
+				padding-left: 0px;
+				@media only screen and (max-width: $tablet_width) {
+					padding-top: 0em;
+				}
+
+				li {
+					display: block;
+					@media only screen and (max-width: $tablet_width) {
+						display: inline-block;
+					}
+				}
+				
+			}
 		}
 	}
 }

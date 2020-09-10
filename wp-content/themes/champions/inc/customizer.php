@@ -262,7 +262,7 @@ function champions_customize_register( $wp_customize ) {
             $wp_customize, 
             'champions_color_background_content_light', 
 			array(              
-				'label'      => __('Secondary colour', 'theme_slug' ),
+				'label'      => __('Light content colour', 'theme_slug' ),
 				'section'    => 'colors'       
 			)
 		)
@@ -286,7 +286,31 @@ function champions_customize_register( $wp_customize ) {
             $wp_customize, 
             'champions_color_background_content_dark', 
 			array(              
-				'label'      => __('Secondary colour', 'theme_slug' ),
+				'label'      => __('Dark content colour', 'theme_slug' ),
+				'section'    => 'colors'       
+			)
+		)
+	);
+
+	/**
+	 * background content dark color.
+	 * @link https://developer.wordpress.org/themes/customize-api/customizer-objects/
+	 */
+	$wp_customize->add_setting(
+		'champions_color_footer_text',
+		array(
+			'default'           => '#B2B2B2',
+			'sanitize_callback' => 'sanitize_hex_color',
+			'type' => 'theme_mod',
+		)
+	);
+
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control( 
+            $wp_customize, 
+            'champions_color_footer_text', 
+			array(              
+				'label'      => __('Footer text colour', 'theme_slug' ),
 				'section'    => 'colors'       
 			)
 		)
